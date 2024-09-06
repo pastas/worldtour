@@ -1,12 +1,10 @@
-import panel as pn
-import hvplot.pandas
-import folium
-import os
 import base64
-from folium import IFrame
-import numpy as np
-from bokeh.resources import INLINE
+import os
 
+import folium
+import numpy as np
+import panel as pn
+from folium import IFrame
 
 pn.extension(sizing_mode="stretch_width")
 
@@ -23,7 +21,7 @@ for fl in os.listdir(dir):
         popup = folium.Popup(iframe, max_width=500)
 
         folium.Marker(
-            location=[50 + np.random.rand(1) * 10, 10 + np.random.rand(1) * 100],
+            location=[47 + np.random.rand(1) * 0.5, 10 + np.random.rand(1) * 10],
             popup=popup,
             icon=folium.Icon(),
             color="#009BE0",
@@ -34,10 +32,10 @@ m.add_child(folium.LatLngPopup())
 
 text = """
 Welcome to the Pastas model demo website, showing the locations of the Pastas models
-around the world. Click on the markers to see the Pastas model and more information on 
-the Pastas application. 
+around the world. Click on the markers to see the Pastas model and more information on
+the Pastas application.
 
-Want to add a model? Send a pas-file of a models you want to add to us by submitting an 
+Want to add a model? Send a pas-file of a models you want to add to us by submitting an
 issue on <a href="https://github.com/pastas/worldtour/issues">Github</a>.
 """
 
@@ -56,7 +54,10 @@ template = pn.template.BootstrapTemplate(
     main_max_width="100%",
     main=[folium_pane],
     header_background="#009BE0",
+    favicon="app/img/favo.ico",
+
 )
 
-# template.servable()
-template.save("index.html", resources=INLINE)
+# Save as a standalone HTML file
+template.servable()
+template.save("index.html", )
